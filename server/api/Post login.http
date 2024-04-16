@@ -1,0 +1,23 @@
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "johndoe@gmail.com",
+  "password": "123456"
+}
+
+> {%
+	client.test("Request executed successfully", function() {
+		client.assert(response.status === 200, "Response status is not 200");
+	});
+
+	client.test("Response body is a JSON", function() {
+		client.assert(response.body !== null, "Response body is null");
+	});
+
+    client.test("Response name is John Doe", function() {
+        client.assert(response.body.name === "John Doe", "Response name is not John Doe");
+    });
+%}
+
+###
