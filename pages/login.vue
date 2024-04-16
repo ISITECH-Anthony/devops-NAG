@@ -5,12 +5,12 @@
             <p class="text-gray-500 mb-4">Enter your credentials to access your account.</p>
             <form class="flex flex-col gap-3">
                 <UFormGroup label="Email">
-                    <UInput type="text" color="primary" variant="outline" placeholder="Email" v-model="email" />
+                    <UInput color="blue" type="text" variant="outline" placeholder="Email" v-model="email" />
                 </UFormGroup>
                 <UFormGroup label="Password">
-                    <UInput type="password" color="primary" variant="outline" placeholder="Password" v-model="password" />
+                    <UInput color="blue" type="password" variant="outline" placeholder="Password" v-model="password" />
                 </UFormGroup>
-                <UButton @click="() => login()" class="self-end w-fit">Sign in</UButton>
+                <UButton color="blue" @click="() => login()" class="self-end w-fit">Sign in</UButton>
             </form>
         </UCard>
     </div>
@@ -41,7 +41,7 @@ export default {
                 const data = await response.json();
                 if (response.status === 200) {
                     // Ajout au localStorage
-                    localStorage.setItem('banane', data);
+                    localStorage.setItem('banane', JSON.stringify(data));
                     // Redirection
                     this.$router.push('/home');
                 }
