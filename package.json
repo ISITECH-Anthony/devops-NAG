@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "@nuxt/ui": "^2.15.2"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
