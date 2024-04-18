@@ -68,6 +68,17 @@ Pour assurer la robustesse et la réactivité de notre infrastructure, nous avon
 1. **Surveillance en Temps Réel** : Nous utilisons un système de health checks pour monitorer continuellement l'état de nos conteneurs. Toutes les 5 secondes, un système automatique vérifie si chaque conteneur répond correctement. En cas d'anomalie, des actions correctives sont immédiatement déclenchées pour garantir une disponibilité constante.
 2. **Gestion Dynamique des Performances** : Un système dédié surveille les performances de chaque conteneur. Si un conteneur dépasse un seuil prédéfini de ressources, nous lançons automatiquement une instance supplémentaire. Le trafic est alors réparti entre l'ancienne et la nouvelle instance, ce qui permet d'équilibrer la charge sans interruption de service. À chaque déclenchement de ce processus, une "soft alerte" est émise. Celle-ci nous informe de la situation sans envoyer de notification immédiate. Toutefois, si le problème persiste et se répète plus de 5 fois sur une courte période, le système maintient cette duplication de service et nous envoie une "alerte d'urgence". Cette dernière nous permet d'intervenir rapidement pour résoudre définitivement le problème.
 
+## Gestion des Logs avec Loki
+Pour une surveillance efficace et un débogage rapide, nous avons intégré Loki à notre infrastructure. Loki est une solution de gestion de logs horizontalement scalable, conçue pour une recherche et un stockage efficaces des logs à grande échelle. Voici comment Loki améliore notre système :
+
+### Intégration et Fonctionnement
+Loki est étroitement intégré avec Grafana, ce qui permet une visualisation en temps réel et une analyse approfondie des logs collectés. En utilisant un modèle similaire à Prometheus, mais pour les logs, Loki indexe les informations en se basant sur un ensemble de labels, plutôt que de l'ensemble du log, rendant les opérations de recherche beaucoup plus rapides et moins coûteuses en termes de stockage.
+
+### Avantages Clés de Loki
+1. **Performance Optimisée** : Loki offre une performance exceptionnelle en termes de temps de réponse lors des requêtes, grâce à son architecture légère qui minimise les coûts de stockage tout en maximisant la rapidité de récupération des données.
+2. **Simplicité de Maintenance** : Avec son système basé sur des labels, la gestion des logs devient plus intuitive et moins susceptible aux erreurs, ce qui facilite la maintenance et le suivi des logs à travers de multiples services et instances.
+3. **Intégration avec les Outils Existant** : Loki se marie parfaitement avec les outils que nous utilisons déjà comme Grafana pour la visualisation, permettant de tirer parti de tableaux de bord configurables pour une meilleure compréhension et réaction aux incidents.
+
 ## Monitoring avec Grafana
  
 Nous n'avons pu utilisé Grafana sur ce projet, mais nous l'avons tout de même utilisé sur notre BDD PostgreSQL de fin d'année.
